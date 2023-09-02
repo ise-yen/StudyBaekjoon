@@ -1,6 +1,7 @@
 // 바이러스
 
 #include <iostream>
+#include <queue>
 
 using namespace std;
 
@@ -16,11 +17,28 @@ void DFS_2606(int c, int N) {
 
 	for (int i = 1; i <= N; i++) {
 		if (isVisit[i] || com[c][i] == 0) continue;
-
 		cnt++;
 		DFS_2606(i, N);
 	}
 
+}
+
+void BFS_2606(int c, int N) {
+	queue<int> q;
+	q.push(c);
+	isVisit[c] = true;
+
+	while (!q.empty()) {
+		c = q.front();
+		q.pop();
+
+		for (int i = 1; i <= N; i++) {
+			if (isVisit[i] || com[c][i] == 0) continue;
+			isVisit[i] = true;
+			cnt++;
+			q.push(i);
+		}
+	}
 }
 
 int main() {
@@ -35,6 +53,6 @@ int main() {
 		com[com2][com1] = 1;
 	}
 
-	DFS_2606(1, N);
+	BFS_2606(1, N);
 	cout << cnt;
 }
