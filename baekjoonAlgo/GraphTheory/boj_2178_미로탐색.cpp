@@ -41,7 +41,7 @@ void BFS_2178(int r, int c, int N, int M) {
 	}
 }
 
-int main() {
+void boj_2178_미로탐색() {
 	// 입력
 	int N{}, M{};
 	cin >> N >> M;

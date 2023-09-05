@@ -41,8 +41,8 @@ int main() {
 			printf("%d\n", dq.size());
 		}
 		else if (str == "empty") {
-			if (dq.empty()) printf("1");
-			else printf("0");
+			if (dq.empty()) printf("1\n");
+			else printf("0\n");
 		}
 		else if (str == "front") {
 			if (dq.empty()) printf("-1\n");
