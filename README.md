@@ -18,6 +18,7 @@
 |2164|카드2|queue||
 |9012|괄호|stack||
 |10773|제로|stack||
+|10816|숫자카드2|unordered_map|map보다 find, erase, insert 부분에서 O(1)O(1)로 빠르다고 한다.|
 |10828|스택|stack||
 |10845|큐|queue||
 |10866|덱|dequeu||
