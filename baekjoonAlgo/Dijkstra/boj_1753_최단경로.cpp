@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <functional>
@@ -12,33 +12,33 @@ const int MAX = 20001;
 vector<pair<int, int>> graph[MAX];
 
 int dis[MAX]{};
-int V{}, E{}, K{}; // Á¤Á¡, °£¼±, ½ÃÀÛ ³ëµå ¹øÈ£
+int V{}, E{}, K{}; // ì •ì , ê°„ì„ , ì‹œìž‘ ë…¸ë“œ ë²ˆí˜¸
 
 void dijkstra(int start) {
-	priority_queue<pair<int, int>> pq; // 1. ºñ¿ë, 2. ´ÙÀ½ ³ëµå ¹øÈ£
-	// ºñ¿ëÀÌ ¸ÕÀúÀÎ ÀÌÀ¯ : ºñ¿ëÀ» ±âÁØÀ¸·Î ¿ì¼±¼øÀ§Å¥ ¾È¿¡¼­ Á¤·ÄµÇ°Ô ÇÏ±â À§ÇØ
+	priority_queue<pair<int, int>> pq; // 1. ë¹„ìš©, 2. ë‹¤ìŒ ë…¸ë“œ ë²ˆí˜¸
+	// ë¹„ìš©ì´ ë¨¼ì €ì¸ ì´ìœ  : ë¹„ìš©ì„ ê¸°ì¤€ìœ¼ë¡œ ìš°ì„ ìˆœìœ„í ì•ˆì—ì„œ ì •ë ¬ë˜ê²Œ í•˜ê¸° ìœ„í•´
 
 	pq.push({ 0, start});
 	dis[start] = 0;
 
 	while (!pq.empty()) {
-		// ºñ¿ë¿¡ ¸¶ÀÌ³Ê½º¸¦ ºÙÀÌ´Â ÀÌÀ¯ : C++ÀÇ ¿ì¼±¼øÀ§ Å¥=ÃÖ´ëÈü
-		/* ex) ºñ¿ë
-		±âº»: 10, 9, 8, 7 : ºñ¿ë°ªÀÌ Å¬¼ö·Ï 1¹ø
-		À½¼ö: -7, -8, -9, -10  : ºñ¿ëÀÌ ÀÛÀ»¼ö·Ï 1¹ø(ÃÖ¼ÒÈüÃ³·³ º¸ÀÌ°Ô µÊ)
+		// ë¹„ìš©ì— ë§ˆì´ë„ˆìŠ¤ë¥¼ ë¶™ì´ëŠ” ì´ìœ  : C++ì˜ ìš°ì„ ìˆœìœ„ í=ìµœëŒ€íž™
+		/* ex) ë¹„ìš©
+		ê¸°ë³¸: 10, 9, 8, 7 : ë¹„ìš©ê°’ì´ í´ìˆ˜ë¡ 1ë²ˆ
+		ìŒìˆ˜: -7, -8, -9, -10  : ë¹„ìš©ì´ ìž‘ì„ìˆ˜ë¡ 1ë²ˆ(ìµœì†Œíž™ì²˜ëŸ¼ ë³´ì´ê²Œ ë¨)
 		*/
-		int nowCost = -pq.top().first; // ÇöÀç±îÁöÀÇ ºñ¿ë
-		int nowNode = pq.top().second; // ÇöÀç ³ëµå ¹øÈ£
+		int nowCost = -pq.top().first; // í˜„ìž¬ê¹Œì§€ì˜ ë¹„ìš©
+		int nowNode = pq.top().second; // í˜„ìž¬ ë…¸ë“œ ë²ˆí˜¸
 		pq.pop();
 
-		// ÀÌ¹Ì ¹æ¹®µÈ ³ëµå´Â ÆÐ½º
+		// ì´ë¯¸ ë°©ë¬¸ëœ ë…¸ë“œëŠ” íŒ¨ìŠ¤
 		if (dis[nowNode] < nowCost) continue;
 
-		// ÇöÀç ³ëµå¿¡¼­ °¥ ¼ö ÀÖ´Â ³ëµåµé
+		// í˜„ìž¬ ë…¸ë“œì—ì„œ ê°ˆ ìˆ˜ ìžˆëŠ” ë…¸ë“œë“¤
 		for (int i = 0; i < graph[nowNode].size(); i++) {
 			int cost = nowCost + graph[nowNode][i].second;
 
-			// cost°¡ ´õ ÃÖ´Ü °Å¸®¶ó¸é ¾÷µ¥ÀÌÆ®
+			// costê°€ ë” ìµœë‹¨ ê±°ë¦¬ë¼ë©´ ì—…ë°ì´íŠ¸
 			int nextNode = graph[nowNode][i].first;
 			if (cost < dis[nextNode]) {
 				dis[nextNode] = cost;
@@ -54,13 +54,13 @@ int main() {
 	cin >> K;
 
 	for (int i = 0; i < E; i++) {
-		int u{}, v{}, w{}; // ½ÃÀÛ ³ëµå, µµÂø ³ëµå, ºñ¿ë
+		int u{}, v{}, w{}; // ì‹œìž‘ ë…¸ë“œ, ë„ì°© ë…¸ë“œ, ë¹„ìš©
 		cin >> u >> v >> w;
 	
-		graph[u].push_back({ v, w }); // (Ãâ¹ß) u ³ëµå ¡æ (µµÂø) v ³ëµå : (ºñ¿ë=w)
+		graph[u].push_back({ v, w }); // (ì¶œë°œ) u ë…¸ë“œ â†’ (ë„ì°©) v ë…¸ë“œ : (ë¹„ìš©=w)
 	}
 
-	// ÃÖ´Ü °Å¸® Å×ÀÌºíÀ» ¸ðµÎ ¹«ÇÑÀ¸·Î ÃÊ±âÈ­
+	// ìµœë‹¨ ê±°ë¦¬ í…Œì´ë¸”ì„ ëª¨ë‘ ë¬´í•œìœ¼ë¡œ ì´ˆê¸°í™”
 	fill(dis, dis + MAX, INF);
 
 	dijkstra(K);
