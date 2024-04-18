@@ -1,36 +1,41 @@
 // 스택 수열
-
 #include <iostream>
 #include <stack>
-#include <vector>
+#include <deque>
+#include <string>
 
 using namespace std;
 
 int main() {
-	int n{};
-	cin >> n;
+	int N{};
+	cin >> N;
 
-	stack<int> s;
-	vector<int> v;
-
-	for (int i = 0; i < n; i++) {
+	deque<int> dq;
+	for (int i = 0; i < N; i++) {
 		int num{};
 		cin >> num;
-		v.push_back(num);
+		dq.push_back(num);
 	}
 
-
-	int before{}, now = v[0], after = v[1];
-
-	for (int i = 0; i < n; i++) {
-		for (int i = 1; i <= now; i++) {
-			s.push(i);
-			cout << "+" << endl;
+	stack<int> s;
+	string answer;
+	int n = 1;
+	while (!dq.empty()) {
+		if (n > N + 1) break;
+		if (s.empty() || dq.front() != s.top()) {
+			s.push(n);
+			answer += "+";
+			n++;
+		}
+		else { // dq.front() == s.top()
+			s.pop();
+			answer += "-";
+			dq.pop_front();
 		}
 	}
 
-
-
-	
-
+	if (dq.empty()) {
+		for (int i = 0; i < answer.length(); i++) cout << answer[i] << "\n";
+	}
+	else cout << "NO";
 }
